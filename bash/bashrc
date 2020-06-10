@@ -1,10 +1,22 @@
 #!/bin/sh
 
+# Interactive shell
+
+case $- in
+  *i*) ;;
+  *) return 
+esac
+
+
+# VI Control Keys
+
 set -o vi
 
 # Aliases
 alias config='cd ~/repos/gitlab/itbarsoum/dotfiles'
 alias codeviolin='cd ~/repos/projects/codeviolin'
+alias fewproject='cd~/repos/projects/fewproject'
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Functions
 
@@ -12,4 +24,48 @@ push() {
   git add .
   git commit
   git push
+  alert
 }
+
+
+# History
+
+HISTCONTROL=ignoreboth
+HISTFILESIZE=30
+
+# Optics
+
+
+rgb () {
+  echo -n $'\033[38;2;'$1';'$2';'$3'm'
+} && export -f rgb
+
+rgbg () {
+  echo -n $'\033[48;2;'$1';'$2';'$3'm'
+} && export -f rgb
+
+
+export PROMPT_COMMAND='
+  promptbg=$(rgbg $promptbgr $promptbgg $promptbgb)
+  # FIXME
+  promptglyphc=$(rgb $promptbgr $promptbgg $promptbgb)
+  if [[ $HOME == $PWD ]]; then
+    export PROMPTDIR="[~/]"
+  elif [[ $HOME == ${PWD%/*} ]]; then
+    export PROMPTDIR="[/${PWD##*/}]"
+  elif [[ / == $PWD ]]; then
+    export PROMPTDIR="[/]"
+  elif [[ "" == ${PWD%/*} ]]; then
+    export PROMPTDIR=$PWD
+  else
+    # TODO fixeme with ascii char
+    export PROMPTDIR=[/${PWD##*/}]
+  fi
+  if [[ $EUID == 0 ]]; then
+    PS1="\[$blinkon$promptbg$red\]\u\[$base03$blinkoff\]@\[\$prompthostc\]\h \[$base03\]\[$promptdirc\]"$PROMPTDIR" \[$reset$promptglyphc\]$promptglyph \[$reset\]"
+  else 
+    PS1="\[$base03\]\[$promptdirc\]"$PROMPTDIR" \[$reset$twitch\]$promptglyph \[$reset\]"
+ fi
+'
+
+
