@@ -15,8 +15,13 @@ set -o vi
 # Aliases
 alias config='cd ~/repos/gitlab/itbarsoum/dotfiles'
 alias codeviolin='cd ~/repos/projects/codeviolin'
-alias fewproject='cd~/repos/projects/fewproject'
+alias fewproject='cd ~/repos/projects/fewproject'
+alias private='cd ~/repos/gitlab/itbarsoum/private'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+alias preview='browser-sync start --server --files "*.html, css/*.css"'
+alias globaldir='cd ~/repos/global'
+alias list='ls ~/repos/gitlab/itbarsoum/dotfiles/scripts'
+
 
 # Functions
 
@@ -26,6 +31,7 @@ push() {
   git push
   alert
 }
+
 
 
 # History
@@ -44,12 +50,8 @@ rgbg () {
   echo -n $'\033[48;2;'$1';'$2';'$3'm'
 } && export -f rgb
 
-
 export PROMPT_COMMAND='
-  promptbg=$(rgbg $promptbgr $promptbgg $promptbgb)
-  # FIXME
-  promptglyphc=$(rgb $promptbgr $promptbgg $promptbgb)
-  if [[ $HOME == $PWD ]]; then
+    if [[ $HOME == $PWD ]]; then
     export PROMPTDIR="[~/]"
   elif [[ $HOME == ${PWD%/*} ]]; then
     export PROMPTDIR="[/${PWD##*/}]"
@@ -68,4 +70,6 @@ export PROMPT_COMMAND='
  fi
 '
 
-
+# Paths
+export PATH=~/repos/gitlab/itbarsoum/dotfiles/scripts/:$PATH
+export PATH=~/repos/gitlab/itbarsoum/private/bash/now/:$PATH

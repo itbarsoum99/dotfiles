@@ -21,5 +21,5 @@ panels, use VIM controls (j to go down, k to go up, h to go left, and l to go ri
 ### Disconnecting from TMUX
 
 To disconnect from TMUX, use `C-a d`. To kill the current pane, use
-`C-a x`. The confirmation has been removed.
-
+`C-a x`. The confirmation has been removed. To kill the server, use
+`C-a-x`, holding down all three. This confirmation has not been removed.

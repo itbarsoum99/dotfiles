@@ -1,4 +1,4 @@
 #!/bin/sh
 
 echo Configuring vim
-ln -s "$PWD/vimrc" "$HOME/.vimrc"
+ln -sf "$PWD/vimrc" "$HOME/.vimrc"
