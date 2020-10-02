@@ -54,7 +54,7 @@ export PROMPT_COMMAND='
     if [[ $HOME == $PWD ]]; then
     export PROMPTDIR="[~/]"
   elif [[ $HOME == ${PWD%/*} ]]; then
-    export PROMPTDIR="[/${PWD##*/}]"
+    export PROMPTDIR="[${PWD##*/}]"
   elif [[ / == $PWD ]]; then
     export PROMPTDIR="[/]"
   elif [[ "" == ${PWD%/*} ]]; then
@@ -73,3 +73,4 @@ export PROMPT_COMMAND='
 # Paths
 export PATH=~/repos/gitlab/itbarsoum/dotfiles/scripts/:$PATH
 export PATH=~/repos/gitlab/itbarsoum/private/bash/now/:$PATH
+export PATH="/home/itbarsoum99/repos/gitlab/itbarsoum/dotfiles/lynx:/home/itbarsoum99/repos/gitlab/itbarsoum/private/bash/now/:/home/itbarsoum99/repos/gitlab/itbarsoum/dotfiles/scripts/:/home/itbarsoum99/bin:/usr/local/bin:/usr/bin:/bin":$PATH

@@ -107,7 +107,6 @@ endif
 
 " high contrast for streaming, etc.
 set background=dark
-colorscheme elflord
 
 " only load plugins if Plug detected
 if filereadable(expand("~/.vim/autoload/plug.vim"))
