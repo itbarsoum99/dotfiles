@@ -13,14 +13,13 @@ esac
 set -o vi
 
 # Aliases
-alias config='cd ~/repos/gitlab/itbarsoum/dotfiles'
-alias codeviolin='cd ~/repos/projects/codeviolin'
-alias fewproject='cd ~/repos/projects/fewproject'
-alias private='cd ~/repos/gitlab/itbarsoum/private'
+alias config='cd ~/repos/private/dotfiles'
+alias private='cd ~/repos/private'
+alias projects='cd ~/repos/projects'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias preview='browser-sync start --server --files "*.html, css/*.css"'
-alias globaldir='cd ~/repos/global'
-alias list='ls ~/repos/gitlab/itbarsoum/dotfiles/scripts'
+alias list='ls ~/repos/private/dotfiles/scripts'
+
 
 
 # Functions
