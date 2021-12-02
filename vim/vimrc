@@ -1,6 +1,5 @@
 " designed for vim 8+
 " (see rwx.gg/vi for help)
-let skip_defaults_vim=1
 set nocompatible
 
 " activate line numbers
@@ -51,10 +50,6 @@ set shortmess=aoOtI
 " prevents truncated yanks, deletes, etc.
 set viminfo='20,<1000,s1000
 
-" not a fan of bracket matching or folding
-let g:loaded_matchparen=1
-set noshowmatch
-set foldmethod=manual
 
 " Just the defaults, these are changed per filetype by plugins.
 " Most of the utility of all of this has been superceded by the use of
@@ -90,9 +85,6 @@ set hidden
 
 " command history
 set history=100
-
-" here because plugins and stuff need it
-syntax enable
 
 " allow sensing the filetype
 filetype plugin on
@@ -142,14 +134,6 @@ au bufnewfile,bufRead *ssh/config set filetype=sshconfig
 au bufnewfile,bufRead *gitconfig set filetype=gitconfig
 au bufnewfile,bufRead /tmp/psql.edit.* set syntax=sql
 
-" displays all the syntax rules for current position, useful
-" when writing vimscript syntax plugins
-function! <SID>SynStack()
-	if !exists("*synstack")
-		return
-	endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc  
 
 " start at last place you were editing
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
